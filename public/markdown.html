@@ -1,0 +1,92 @@
+<h1 id="shamwowdocumentscrubber">ShamWow Document Scrubber</h1>
+
+<p>ShamWow is a document scrubber to remove personally identifiable information while still retaining the same data type(Email, Phone, etc.). </p>
+
+<h2 id="howitworks">How it Works</h2>
+
+<p>ShamWow uses reflection to gain access to all of the properties within a POCO (Plain Old C# Object) and iterates through all the properties while performing scrubbing specific to the type described within the POCO. You describe your type of scrubbing by annotating a property with its specific typed scrubber (ScrubDouble, ScrubInteger, etc.) and then add in the argument corresponding to the type of data you want your PII replaced with.</p>
+
+<p>Example:</p>
+
+<pre><code class=" csharp">//How you would tell ShamWow to scrub an Address
+[ScrubString("Address")]
+public string StreetAddress1 { get; set; }
+</code></pre>
+
+<blockquote>
+  <p>In this example ShamWow as long as the value isn't null, then this property will have its value replaced with a fake Address</p>
+</blockquote>
+
+<h2 id="fullworkflowexample">Full Workflow Example</h2>
+
+<p>Once your POCOs are annotated and you have installed the ShamWow NuGet package you're all set you begin scrubbing documents.</p>
+
+<h4 id="initialsetup">Initial Setup</h4>
+
+<blockquote>
+  <p>Install needed NuGet packages along with their dependencies
+  1. <a href="https://www.nuget.org/packages/ShamWow">ShamWow</a>
+  2. <a href="https://www.nuget.org/packages/ShamWow.Interfaces/">ShamWow.Interfaces</a></p>
+</blockquote>
+
+<h4 id="step1getrequirements">Step 1 Get Requirements</h4>
+
+<blockquote>
+  <p>Get object to scrub and get instance of ShamWow</p>
+</blockquote>
+
+<pre><code class=" csharp">//Fake object
+var obj = new object();
+//Get instance of ShamWow and run in marked only mode
+IShamWow processor = ShamWowEngine.GetFactory().Create(obj, ScrubMode.Marked);
+</code></pre>
+
+<h4 id="step2scrubbing">Step 2 Scrubbing</h4>
+
+<blockquote>
+  <p>Start scrubbing and get clean values</p>
+</blockquote>
+
+<pre><code class=" csharp">//Start scrubbing
+processor.Scrub();
+//Retrieve clean data
+var cleanData = processor.CleanData();
+</code></pre>
+
+<h4 id="step3verifyscrubbing">Step 3 Verify Scrubbing</h4>
+
+<blockquote>
+  <p>Get Manifest and verify the scrubbing was successful</p>
+</blockquote>
+
+<pre><code class=" csharp">//Get Manifest for Auditing purposes
+var manifest = processor.GetManifest();
+//Check the manifest for errors
+var IsSuccess = processor.CheckManifest();
+</code></pre>
+
+<h2 id="specialattributes">Special Attributes</h2>
+
+<blockquote>
+  <p><strong>PreserveValue</strong> ensure the that this property's value will not be scrubbed or changed</p>
+  
+  <p><strong>StatefulScrub</strong> allows you to define a variable name that then can be used throughout your POCO transform to ensure the value's of each decorated property will be the same.</p>
+</blockquote>
+
+<pre><code class=" csharp">//Example of Preserve attribute
+[PreserveValue]
+public string str {get; set;}
+//Examaple of a stateful scrub
+[StatefulScrub("StateOne")]
+public int id {get; set;}
+</code></pre>
+
+<h2 id="wrapup">Wrap Up</h2>
+
+<p>Thats the basics of  ShamWow, it is meant to be very painless and require the least amount of intervention by the user. The three major items you need before scrubbing is </p>
+
+<ol>
+<li>POCOs for data to mapping</li>
+<li>ShamWow NuGet package</li>
+<li>PII to scrub</li>
+</ol>

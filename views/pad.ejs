@@ -17,6 +17,7 @@
                     <h3>Marked : A Markdown Editor for the Web</h3>
                 </a>
                 <div><button class="button" id="save-btn">Save</button></div>
+                <div id="file-download"></div>
             </div>
         </div>
         <section class="row full-height">
@@ -37,8 +38,13 @@
                 var getUrl = window.location;
                 var baseUrl = getUrl.protocol + "//" + getUrl.host;
                 var url = baseUrl + '/save';
-                $.post(url, htmlText, (data) => {
+                const reqVal = {
+                    value: htmlText
+                };
+
+                $.post(url, reqVal, (data) => {
                     console.log(data);
+                    $('#file-download').html(data);
                 });
             });
         });

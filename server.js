@@ -3,6 +3,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+const fs = require('fs');
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -26,12 +27,13 @@ app.get('/editor', function(req, res) {
 app.post('/save', function(req,res) {
 
     var fileValue = req.body;
-    req.headers 
     console.log(fileValue);
-    //console.log(req.headers);
-    console.log(req.query);
-    res.set({'Content-Disposition': 'attachment; filename=\"markdown.html\"','Content-type': 'text/html'});
-    //res.send(fileValue, { 'Content-Disposition': 'attachment; filename=markdown.md' }); 
+    var writeStream = fs.createWriteStream("./public/markdown.html");
+    writeStream.write(fileValue.value);
+    writeStream.end();
+
+    res.send('File is generated. Click <a href="markdown.html"> here </a> to see the file. Save/download the file using ctrl+s');
+
     res.send(fileValue);
 });
 
