@@ -1,0 +1,64 @@
+<!-- views/pad.ejs -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Realtime Markdown Viewer</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <style>
+        .container {
+            max-width: 125rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .bottom-offset-10 {
+            margin-bottom: 2.5em;
+        }
+
+        .resize-img {
+            width: 50%;
+            height: auto;
+        }
+
+        .center {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row bottom-offset-10">
+            <div class="column column-100 column-offset-10">
+                <h3>Marked : A Markdown Editor for the Web</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column column-50 column-offset-25">
+                <div class="editor-info-area text-center">
+                    <div class="resize-img center">
+                        <img src="markdown.svg" alt="Markdown logo">
+                    </div>
+                    <p>
+                        Marked is a real time Markdown editor that gives you a realtime visual view of your
+                        rendered markdown.
+                    </p>
+                    <p>
+                        This is still very early and just a random project. However, I have a few planned features
+                        such as custom theme loading, pdf export, and many more as I think of them.
+                    </p>
+                    <a href="/editor" class="button">Open Editor</a>
+                </div>
+            </div>
+            <div class="column column-offset-25"></div>
+        </div>
+    </div>
+</body>
+
+</html>

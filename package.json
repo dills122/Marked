@@ -1,0 +1,19 @@
+{
+  "name": "marked",
+  "version": "0.0.1",
+  "description": "Real time markdown editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "markdown"
+  ],
+  "author": "Dylan Steele",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "milligram": "^1.3.0"
+  }
+}
