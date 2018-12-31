@@ -1,5 +1,3 @@
-<!-- views/pad.ejs -->
-
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +13,10 @@
     <div class="container">
         <div class="row">
             <div class="column column-100 column-offset-10">
-                <a href="/" onclick="return confirmExit();"><h3>Marked : A Markdown Editor for the Web</h3></a>
+                <a href="/" onclick="return confirmExit();">
+                    <h3>Marked : A Markdown Editor for the Web</h3>
+                </a>
+                <div><button class="button" id="save-btn">Save</button></div>
             </div>
         </div>
         <section class="row full-height">
@@ -24,8 +25,24 @@
         </section>
     </div>
     <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
 
+            // jQuery methods go here...
+            $('#save-btn').click(() => {
+                var htmlText = $('#markdown').html();
+                var getUrl = window.location;
+                var baseUrl = getUrl.protocol + "//" + getUrl.host;
+                var url = baseUrl + '/save';
+                $.post(url, htmlText, (data) => {
+                    console.log(data);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

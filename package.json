@@ -12,6 +12,7 @@
   "author": "Dylan Steele",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "milligram": "^1.3.0"
