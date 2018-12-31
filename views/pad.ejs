@@ -1,0 +1,31 @@
+<!-- views/pad.ejs -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Realtime Markdown Viewer</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="column column-100 column-offset-10">
+                <a href="/" onclick="return confirmExit();"><h3>Marked : A Markdown Editor for the Web</h3></a>
+            </div>
+        </div>
+        <section class="row full-height">
+            <textarea class="column column-50 fill" id="pad">Write your text here..</textarea>
+            <div class="column column-50 fill" id="markdown"></div>
+        </section>
+    </div>
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.0.2/dist/showdown.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
