@@ -1,5 +1,7 @@
 # Marked
 
+![Markdown Logo](public/markdownColor.png)
+
 A Markdown editor for the web. 
 
 
