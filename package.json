@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "milligram": "^1.3.0"
   }
 }
